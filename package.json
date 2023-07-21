@@ -26,8 +26,12 @@
     "xss-clean": "^0.1.4"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "debug": "ndb server.js"
+    "start": "npx http-server ./dist",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "name": "tours",
   "version": "1.0.0",
