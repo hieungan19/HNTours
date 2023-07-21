@@ -69,7 +69,7 @@ reviewSchema.post('save', function () {
 });
 
 reviewSchema.pre(/^findOneAnd/, async function (next) {
-  console.log(this._conditions);
+  //console.log(this._conditions);
   this.docToUpdate = await this.model.findOne(this._conditions); // Store the document to update
   next();
 });

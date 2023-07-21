@@ -1,8 +1,8 @@
 const updateData = async (data, type) => {
   const url =
     type === 'password'
-      ? 'http://localhost:3000/api/v1/users/updatePassword'
-      : 'http://localhost:3000/api/v1/users/updateData';
+      ? '/api/v1/users/updatePassword'
+      : '/api/v1/users/updateData';
 
   const boundary = `multipart-form-boundary-${new Date().getTime()}`;
 

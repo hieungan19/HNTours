@@ -63,7 +63,7 @@ exports.updateUserData = async (req, res, next) => {
 };
 
 exports.getMyTours = async (req, res, next) => {
-  console.log('Hello from bookings');
+  //console.log('Hello from bookings');
   //find all bookings
   const bookings = await Booking.find({ user: req.user.id });
   const tourIDs = bookings.map((el) => el.tour);

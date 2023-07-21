@@ -17,7 +17,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
   //1. Get the current booked tour
   const tour = await Tour.findById(req.params.tourId);
-  console.log(tour);
+  //console.log(tour);
 
   //Create customer
   // const customer = await stripe.customers.create({
@@ -62,10 +62,10 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 exports.createBookingCheckout = catchAsync(async (req, res, next) => {
   //This is only temporaty. Everyone can make booking without paying.
   const { tour, user, price } = req.query;
-  console.log(tour, user, price);
+  //console.log(tour, user, price);
   if (!tour || !user || !price) return next();
   await Booking.create({ tour, user, price });
-  console.log(req.originalUrl.split('?')[0]);
+  //console.log(req.originalUrl.split('?')[0]);
   // req.redirect(req.originalUrl.split('?')[0]);
   next();
 });

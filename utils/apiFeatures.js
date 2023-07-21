@@ -28,7 +28,7 @@ class APIFeature {
   sort() {
     if (this.queryObj.sort) {
       const sortBy = this.queryObj.sort.split(',').join(' ');
-      //   console.log(sortBy);
+      //   //console.log(sortBy);
       this.query = this.query.sort(sortBy);
     } else {
       this.query = this.query.sort({ createdAt: -1 });
@@ -45,7 +45,7 @@ class APIFeature {
     // if (this.queryObj.page) {
     //   const response = await this.query;
     //   const num = response.length * 1;
-    //   console.log(skip + ' ' + num);
+    //   //console.log(skip + ' ' + num);
     //   if (skip > num) throw new Error('This page does not exit');
     // }
     return this;

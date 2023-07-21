@@ -1,7 +1,7 @@
 const AppError = require('../utils/appError');
 const sendErrorDev = (err, req, res) => {
-  // console.log(err.stack);
-  console.log(req.originalUrl);
+  // //console.log(err.stack);
+  //console.log(req.originalUrl);
   // api
   if (req.originalUrl.startsWith('/api')) {
     return res.status(err.statusCode).json({
@@ -52,7 +52,7 @@ const handleCastErrorDB = (err) => {
   return new AppError(`Invalid ${err.path}: ${err.value}`, 400);
 };
 const handleValidError = (err) => {
-  // console.log('handleValidationErrorDB');
+  // //console.log('handleValidationErrorDB');
   const errors = Object.values(err.errors).map((el) => el.message);
 
   const message = `Invalid input data. ${errors.join('.')}`;

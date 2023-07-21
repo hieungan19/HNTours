@@ -79,7 +79,7 @@ const signToken = (id) => {
 exports.signUp = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log('URL: ' + url);
+  //console.log('URL: ' + url);
   const email = new Email(newUser, url);
   await email.sendWelcome();
   createAndSendToken(newUser, 200, res);
@@ -94,10 +94,10 @@ exports.protect = catchAsync(async (req, res, next) => {
   ) {
     token = req.headers.authorization.split(' ')[1];
   } else if (req.cookies) {
-    console.log(req.cookies);
+    //console.log(req.cookies);
     token = req.cookies.jwt;
   }
-  // console.log('TOKEN: ', token);
+  // //console.log('TOKEN: ', token);
 
   if (!token) {
     return next(
@@ -107,7 +107,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   //2. verify token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  // console.log('AFTER DECODE: ', decoded);
+  // //console.log('AFTER DECODE: ', decoded);
 
   //3. Check if user still exist (nếu 1 tài khoản đăng nhập và lấy được token nhưng 1 thiết bị khác lại xóa tài khoản đó đi thì không thể nào xử lí trên token cũ đó được nữa)
   const currentUser = await User.findById(decoded.id);
@@ -138,11 +138,11 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
   // get token and check of it's there
   let token;
   if (req.cookies.jwt) {
-    console.log(req.cookies);
+    //console.log(req.cookies);
     token = req.cookies.jwt;
     //2. verify token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    // console.log('AFTER DECODE: ', decoded);
+    // //console.log('AFTER DECODE: ', decoded);
 
     //3. Check if user still exist (nếu 1 tài khoản đăng nhập và lấy được token nhưng 1 thiết bị khác lại xóa tài khoản đó đi thì không thể nào xử lí trên token cũ đó được nữa)
     const currentUser = await User.findById(decoded.id);
@@ -182,7 +182,7 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.restrictTo = (...roles) => {
-  console.log(roles);
+  //console.log(roles);
   return (req, res, next) => {
     //roles is an array ['admin', 'lead-guide']
     if (!roles.includes(req.user.role))
@@ -235,12 +235,12 @@ exports.forgotPassword = exports.forgotPassword = catchAsync(
 
 exports.resetPassword = async function (req, res, next) {
   //1. Get user base on the token
-  console.log(req.params.token);
+  //console.log(req.params.token);
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
-  console.log(hashedToken);
+  //console.log(hashedToken);
 
   const user = await User.findOne({
     passwordResetToken: hashedToken,
@@ -265,7 +265,7 @@ exports.resetPassword = async function (req, res, next) {
 exports.updatePassword = async (req, res, next) => {
   const user = await User.findById({ _id: req.user.id }).select('+password');
 
-  console.log(user);
+  //console.log(user);
   if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
     return next(AppError('Your current password is wrong. ', 400));
   }
@@ -280,8 +280,8 @@ exports.updatePassword = async (req, res, next) => {
 };
 
 exports.updateUserData = catchAsync(async (req, res, next) => {
-  console.log(req.file);
-  console.log(req.body);
+  //console.log(req.file);
+  //console.log(req.body);
   if (
     req.body.currentPassword ||
     req.body.newPassword ||

@@ -85,7 +85,7 @@ module.exports = class Email {
   try {
     await transporter.sendMail(mailOptions);
   } catch (err) {
-    console.log(err.message);
+    //console.log(err.message);
     throw new Error('Error when send email');
   }
 };*/

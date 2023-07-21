@@ -1,6 +1,6 @@
 const logout = () => {
   console.log('LOGOUT');
-  fetch('http://localhost:3000/api/v1/users/logout', {
+  fetch('/api/v1/users/logout', {
     method: 'GET',
   })
     .then((data) => {

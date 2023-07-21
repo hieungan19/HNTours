@@ -37,7 +37,7 @@ exports.uploadTourImages = upload.fields([
 
 //resize
 exports.resizeTourImages = catchAsync(async (req, res, next) => {
-  // console.log(req.files);
+  // //console.log(req.files);
   if (!req.files.imageCover || !req.files.images) return next();
 
   // cover image
@@ -62,7 +62,7 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
       req.body.images.push(filename);
     })
   );
-  console.log(req.body.images);
+  //console.log(req.body.images);
   next();
 });
 //Check if name is exist
@@ -162,9 +162,9 @@ exports.getGroupTours = async (req, res) => {
 
 exports.getMonthlyPlan = async (req, res) => {
   try {
-    // console.log(req.params.year);
+    // //console.log(req.params.year);
     const year = req.params.year * 1;
-    // console.log(year);
+    // //console.log(year);
     const plan = await Tour.aggregate([
       { $unwind: '$startDates' },
       // { $unwind: '$images' },
@@ -212,9 +212,9 @@ exports.getMonthlyPlan = async (req, res) => {
 };
 exports.getToursWithin = catchAsync(async (req, res, next) => {
   const { distance, latlng, unit } = req.params;
-  console.log(latlng);
+  //console.log(latlng);
   const [lat, lng] = latlng.split(',');
-  console.log(distance, lat, lng, unit);
+  //console.log(distance, lat, lng, unit);
   if (!lat || !lng) {
     return next(
       new AppError(
