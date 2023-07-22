@@ -1,5 +1,5 @@
 const login = async (email, password) => {
-  fetch('http://localhost:3000/api/v1/users/login', {
+  fetch('/api/v1/users/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ const login = async (email, password) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      //console.log(data);
+      console.log(data);
       if (data.status === 'success') {
         alert('Logged in successfully.');
         window.setTimeout(() => {
@@ -22,7 +22,7 @@ const login = async (email, password) => {
       }
     })
     .catch((error) => {
-      //console.log(error);
+      console.log(error);
     });
 };
 document.querySelector('.form--login').addEventListener('submit', (e) => {
